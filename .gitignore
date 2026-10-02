@@ -1,0 +1,38 @@
+﻿# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local logs
+*.log
+
+# Power BI local cache and lock files
+.cache.abf/
+*.lock
+# Power BI Desktop workspace/cache state; keep PBIP, PBIR, TMDL and .platform files.
+**/.pbi/
+
+# Data files: keep raw or licensed datasets out of Git unless their terms allow it.
+# Uncomment relevant patterns after deciding how project data should be managed.
+# data/raw/
+# data/*.csv
+# data/*.xlsx

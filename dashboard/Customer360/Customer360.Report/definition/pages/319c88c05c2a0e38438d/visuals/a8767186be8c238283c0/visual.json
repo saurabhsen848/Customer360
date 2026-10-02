@@ -1,0 +1,36 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "a8767186be8c238283c0",
+  "position": {
+    "x": 83.435582822085891,
+    "y": 54.969325153374228,
+    "z": 8001,
+    "height": 50.061349693251529,
+    "width": 772.51533742331287,
+    "tabOrder": 8001
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Customer360 — Customer Behavior & Churn Analytics",
+                    "textStyle": {
+                      "fontSize": "24pt"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

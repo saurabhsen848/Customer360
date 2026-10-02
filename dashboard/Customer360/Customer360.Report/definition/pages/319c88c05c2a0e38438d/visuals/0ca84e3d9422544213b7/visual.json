@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0ca84e3d9422544213b7",
+  "position": {
+    "x": 298.40490797546011,
+    "y": 244.41717791411043,
+    "z": 4000,
+    "height": 280,
+    "width": 280,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "customer_churn_cleaned"
+                    }
+                  },
+                  "Property": "Average Monthly Charges"
+                }
+              },
+              "queryRef": "customer_churn_cleaned.Average Monthly Charges",
+              "nativeQueryRef": "Average Monthly Charges"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "customer_churn_cleaned"
+                  }
+                },
+                "Property": "Average Monthly Charges"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7b85f94991c24564e429",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "customer_churn_cleaned"
+              }
+            },
+            "Property": "Average Monthly Charges"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

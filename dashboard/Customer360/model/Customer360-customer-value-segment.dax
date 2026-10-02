@@ -1,0 +1,45 @@
+// Calculated column on customers. Keep the boundaries aligned with the SQL analysis.
+Customer Value Segment =
+SWITCH (
+    TRUE (),
+    customers[MonthlyCharges] < 35, "Low",
+    customers[MonthlyCharges] < 70, "Medium",
+    "High"
+)
+
+// Optional calculated column: set Customer Value Segment to sort by this column.
+Customer Value Segment Sort =
+SWITCH (
+    customers[Customer Value Segment],
+    "Low", 1,
+    "Medium", 2,
+    "High", 3
+)
+
+// Tenure bands for the grouped comparisons on Executive Overview.
+Tenure Group =
+SWITCH (
+    TRUE (),
+    customers[tenure] <= 12, "0-12 months",
+    customers[tenure] <= 24, "13-24 months",
+    customers[tenure] <= 48, "25-48 months",
+    "49+ months"
+)
+
+Tenure Group Sort =
+SWITCH (
+    customers[Tenure Group],
+    "0-12 months", 1,
+    "13-24 months", 2,
+    "25-48 months", 3,
+    "49+ months", 4
+)
+
+// Display label derived from the source's 0/1 status field.
+Senior Citizen Status =
+SWITCH (
+    customers[SeniorCitizen],
+    1, "Senior citizen",
+    0, "Non-senior",
+    "Unknown"
+)

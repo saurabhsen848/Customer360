@@ -1,0 +1,77 @@
+// Customer360 measure definitions for the Power BI table `customers`.
+// Add each definition as a separate measure in Power BI Desktop.
+// The project currently documents this table name, but the saved TMDL model
+// has no table definition yet. See ../README.md before applying these measures.
+
+Customer Count =
+DISTINCTCOUNT ( customers[customerID] )
+
+Total Customers =
+[Customer Count]
+
+Churned Customers =
+CALCULATE (
+    [Customer Count],
+    KEEPFILTERS ( customers[Churn] = "Yes" )
+)
+
+Churn Rate =
+DIVIDE ( [Churned Customers], [Total Customers], 0 )
+
+Retained Customers =
+CALCULATE (
+    [Customer Count],
+    KEEPFILTERS ( customers[Churn] = "No" )
+)
+
+Average Monthly Charges =
+AVERAGE ( customers[MonthlyCharges] )
+
+Average Tenure =
+AVERAGE ( customers[tenure] )
+
+// AVERAGE ignores blank TotalCharges; the 11 missing values remain blank.
+Average Total Charges =
+AVERAGE ( customers[TotalCharges] )
+
+// The segment bands match the SQL analysis and use MonthlyCharges as a
+// billing-value proxy: Low < 35, Medium >= 35 and < 70, High >= 70.
+Low Value Customers =
+CALCULATE (
+    [Customer Count],
+    KEEPFILTERS ( customers[MonthlyCharges] < 35 )
+)
+
+Medium Value Customers =
+CALCULATE (
+    [Customer Count],
+    KEEPFILTERS (
+        customers[MonthlyCharges] >= 35
+            && customers[MonthlyCharges] < 70
+    )
+)
+
+High Value Customers =
+CALCULATE (
+    [Customer Count],
+    KEEPFILTERS ( customers[MonthlyCharges] >= 70 )
+)
+
+High Value Churned Customers =
+CALCULATE (
+    [Churned Customers],
+    KEEPFILTERS ( customers[MonthlyCharges] >= 70 )
+)
+
+// Sum of current recurring MonthlyCharges for customers in each churn group.
+Churned Monthly Charges =
+CALCULATE (
+    SUM ( customers[MonthlyCharges] ),
+    KEEPFILTERS ( customers[Churn] = "Yes" )
+)
+
+Retained Monthly Charges =
+CALCULATE (
+    SUM ( customers[MonthlyCharges] ),
+    KEEPFILTERS ( customers[Churn] = "No" )
+)

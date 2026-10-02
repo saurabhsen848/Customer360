@@ -1,0 +1,271 @@
+table customer_churn_cleaned
+	lineageTag: 5ddfbe52-bf64-4654-a3a8-8bc9a883858a
+
+	measure 'Total Customers' =
+			
+			DISTINCTCOUNT(customer_churn_cleaned[customerID])
+		formatString: 0
+		lineageTag: d6c56bb9-0b29-4627-8ae4-cb5a0d0b9522
+
+	measure 'Churned Customers' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(customer_churn_cleaned[customerID]),
+			    customer_churn_cleaned[Churn] = "Yes"
+			)
+		formatString: 0
+		lineageTag: 0b751071-26ad-4962-9989-1ddc15fe9665
+
+	measure 'Churn Rate' =
+			
+			DIVIDE(
+			    [Churned Customers],
+			    [Total Customers],
+			    0
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: c94cde78-e120-4a7a-931b-dc8f80bd2b32
+
+	measure 'Retained Customers' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(customer_churn_cleaned[customerID]),
+			    customer_churn_cleaned[Churn] = "No"
+			)
+		formatString: 0
+		lineageTag: dfc4ca59-34dd-4ad7-bfd0-b690aa56ef71
+
+	measure 'Average Monthly Charges' =
+			
+			AVERAGE(customer_churn_cleaned[MonthlyCharges])
+		lineageTag: 3aaf04d3-0374-4bb0-9114-3ea482c1a2f2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Tenure' =
+			
+			AVERAGE(customer_churn_cleaned[tenure])
+		lineageTag: 959a2b54-c088-4ba2-a0d5-2b6b9d498ac8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Total Charges' =
+			
+			AVERAGE(customer_churn_cleaned[TotalCharges])
+		lineageTag: 3aea5f59-977c-468d-9927-c7a248134511
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column customerID
+		dataType: string
+		lineageTag: 7cd8431b-f94b-4f68-bfe8-bf9d9182945d
+		summarizeBy: none
+		sourceColumn: customerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column gender
+		dataType: string
+		lineageTag: 8d8f848a-a1a1-41d0-bdf3-4cddcd52adaa
+		summarizeBy: none
+		sourceColumn: gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column SeniorCitizen
+		dataType: int64
+		formatString: 0
+		lineageTag: 31dd93d3-a1eb-4e6f-bc77-59cc5859ca41
+		summarizeBy: sum
+		sourceColumn: SeniorCitizen
+
+		annotation SummarizationSetBy = Automatic
+
+	column Partner
+		dataType: string
+		lineageTag: 09520607-19ca-46c1-ba9f-63830fd21e7e
+		summarizeBy: none
+		sourceColumn: Partner
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dependents
+		dataType: string
+		lineageTag: 08f3cd67-226f-40e0-a955-ac2dee2f4eeb
+		summarizeBy: none
+		sourceColumn: Dependents
+
+		annotation SummarizationSetBy = Automatic
+
+	column tenure
+		dataType: int64
+		formatString: 0
+		lineageTag: 5752ebb2-9df6-4119-a87f-1844ce259d12
+		summarizeBy: sum
+		sourceColumn: tenure
+
+		annotation SummarizationSetBy = Automatic
+
+	column PhoneService
+		dataType: string
+		lineageTag: 0dc3f38d-e69a-4b61-a84d-1790abacc7b5
+		summarizeBy: none
+		sourceColumn: PhoneService
+
+		annotation SummarizationSetBy = Automatic
+
+	column MultipleLines
+		dataType: string
+		lineageTag: 909480a9-4eae-4c28-a86f-a63328d7a09f
+		summarizeBy: none
+		sourceColumn: MultipleLines
+
+		annotation SummarizationSetBy = Automatic
+
+	column InternetService
+		dataType: string
+		lineageTag: 5e46963d-c527-4ccc-bf40-4ca161aed764
+		summarizeBy: none
+		sourceColumn: InternetService
+
+		annotation SummarizationSetBy = Automatic
+
+	column OnlineSecurity
+		dataType: string
+		lineageTag: 7528d623-54f8-4b85-8bff-c12dbd0ae6c0
+		summarizeBy: none
+		sourceColumn: OnlineSecurity
+
+		annotation SummarizationSetBy = Automatic
+
+	column OnlineBackup
+		dataType: string
+		lineageTag: c623b7e0-bedd-4ec4-89c7-add1209fe874
+		summarizeBy: none
+		sourceColumn: OnlineBackup
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeviceProtection
+		dataType: string
+		lineageTag: b196c30c-ff21-4e15-a184-7bdd570199c0
+		summarizeBy: none
+		sourceColumn: DeviceProtection
+
+		annotation SummarizationSetBy = Automatic
+
+	column TechSupport
+		dataType: string
+		lineageTag: d5bfb184-6bed-45ee-ad70-4e7f3b832bc4
+		summarizeBy: none
+		sourceColumn: TechSupport
+
+		annotation SummarizationSetBy = Automatic
+
+	column StreamingTV
+		dataType: string
+		lineageTag: 207191bf-5a54-4521-b967-43b74c9f2f12
+		summarizeBy: none
+		sourceColumn: StreamingTV
+
+		annotation SummarizationSetBy = Automatic
+
+	column StreamingMovies
+		dataType: string
+		lineageTag: 7f57adb4-099d-45be-bf47-50089cfca307
+		summarizeBy: none
+		sourceColumn: StreamingMovies
+
+		annotation SummarizationSetBy = Automatic
+
+	column Contract
+		dataType: string
+		lineageTag: 65f546b8-e340-414a-b08e-64e0da6295f3
+		summarizeBy: none
+		sourceColumn: Contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaperlessBilling
+		dataType: string
+		lineageTag: 89ebe194-4678-4beb-8afd-e7e7fa513ed6
+		summarizeBy: none
+		sourceColumn: PaperlessBilling
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentMethod
+		dataType: string
+		lineageTag: f1ac11cf-f7c1-40fa-a48b-0655a2092c67
+		summarizeBy: none
+		sourceColumn: PaymentMethod
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthlyCharges
+		dataType: double
+		lineageTag: 65eeb6a9-4fc5-4075-9801-9719aaea921d
+		summarizeBy: sum
+		sourceColumn: MonthlyCharges
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TotalCharges
+		dataType: double
+		lineageTag: 5aa083f6-630e-4088-afbd-dbf03d065bfd
+		summarizeBy: sum
+		sourceColumn: TotalCharges
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Churn
+		dataType: string
+		lineageTag: 4536fa54-bb1b-488c-a0d8-51a61878e4ac
+		summarizeBy: none
+		sourceColumn: Churn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tenure Group' =
+			
+			SWITCH(
+			    TRUE(),
+			    customer_churn_cleaned[tenure] <= 12, "0-12 months",
+			    customer_churn_cleaned[tenure] <= 24, "13-24 months",
+			    customer_churn_cleaned[tenure] <= 48, "25-48 months",
+			    "49+ months"
+			)
+		lineageTag: 055f3eda-07fd-4fef-9576-3e914e617241
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Customer Segment' =
+			
+			SWITCH(
+			    TRUE(),
+			    customer_churn_cleaned[MonthlyCharges] < 35, "Low Value",
+			    customer_churn_cleaned[MonthlyCharges] < 70, "Medium Value",
+			    "High Value"
+			)
+		lineageTag: 57ec2308-df3d-440b-834b-50c17b940032
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition customer_churn_cleaned = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\Lenovo\OneDrive\Desktop\Customer360\data\processed\customer_churn_cleaned.csv"),[Delimiter=",", Columns=21, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"customerID", type text}, {"gender", type text}, {"SeniorCitizen", Int64.Type}, {"Partner", type text}, {"Dependents", type text}, {"tenure", Int64.Type}, {"PhoneService", type text}, {"MultipleLines", type text}, {"InternetService", type text}, {"OnlineSecurity", type text}, {"OnlineBackup", type text}, {"DeviceProtection", type text}, {"TechSupport", type text}, {"StreamingTV", type text}, {"StreamingMovies", type text}, {"Contract", type text}, {"PaperlessBilling", type text}, {"PaymentMethod", type text}, {"MonthlyCharges", type number}, {"TotalCharges", type number}, {"Churn", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

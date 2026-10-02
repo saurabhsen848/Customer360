@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Customer360"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1698c539-12c0-4ea8-9d6e-38c383c6a420"
+  }
+}
